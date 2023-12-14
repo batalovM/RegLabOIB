@@ -1,0 +1,21 @@
+﻿<Window Background="DimGray"  Foreground="WhiteSmoke" FontFamily="Timew New Roman" FontSize="14" xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="RegLabOIB.Views.RegistationWindow"
+        Title="RegistationWindow">
+        <Grid RowDefinitions="*, 3*,*">
+                <Grid Grid.Row="1">
+                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top">
+                                <TextBlock Margin="0 0 0 10 " HorizontalAlignment="Center" Text="Регистрация"></TextBlock>
+                                <TextBox Margin="10" Watermark="Почта:" Width="250"></TextBox>
+                                <TextBox Margin="10" Watermark="Логин:" Width="250"></TextBox>
+                                <TextBox Margin="10" Watermark="Пароль:" Width="250"></TextBox>
+                                <Button HorizontalAlignment="Center" Margin="10" Content="Зарегистритроваться"></Button>
+                        </StackPanel>
+                </Grid>
+                
+        </Grid>
+    
+</Window>
