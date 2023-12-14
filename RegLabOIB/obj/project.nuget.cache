@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "OsY5E9/4ezrcvMh0xx6d7i1Ofq9u4EI8MkZJQIb8tNxUzAP7qxsA4KPgNEliTMkhp2JyPTWvJz6W4BRntjkaww==",
+  "dgSpecHash": "806XNw4hz8X6vzReRFeVcYahLCdp2gpnvEnB6cWPTBjdmKniCnCxmb/LMEAVRyDhJpQpnhMfIPpfHOyC45CXEA==",
   "success": true,
   "projectFilePath": "C:\\Users\\sasha\\RiderProjects\\RegLabOIB\\RegLabOIB\\RegLabOIB.csproj",
   "expectedPackageFiles": [
@@ -37,6 +37,7 @@
     "C:\\Users\\sasha\\.nuget\\packages\\microsoft.netcore.platforms\\2.1.2\\microsoft.netcore.platforms.2.1.2.nupkg.sha512",
     "C:\\Users\\sasha\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
     "C:\\Users\\sasha\\.nuget\\packages\\microsoft.win32.systemevents\\6.0.0\\microsoft.win32.systemevents.6.0.0.nupkg.sha512",
+    "C:\\Users\\sasha\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
     "C:\\Users\\sasha\\.nuget\\packages\\reactiveui\\18.3.1\\reactiveui.18.3.1.nupkg.sha512",
     "C:\\Users\\sasha\\.nuget\\packages\\skiasharp\\2.88.3\\skiasharp.2.88.3.nupkg.sha512",
     "C:\\Users\\sasha\\.nuget\\packages\\skiasharp.nativeassets.linux\\2.88.3\\skiasharp.nativeassets.linux.2.88.3.nupkg.sha512",
