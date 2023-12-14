@@ -13,10 +13,10 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = RegLabOIB
-build_property.ProjectDir = C:\Users\batal\RiderProjects\RegLabOIB\RegLabOIB\
+build_property.ProjectDir = C:\Users\sasha\RiderProjects\RegLabOIB\RegLabOIB\
 
-[C:/Users/batal/RiderProjects/RegLabOIB/RegLabOIB/App.axaml]
+[C:/Users/sasha/RiderProjects/RegLabOIB/RegLabOIB/App.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/batal/RiderProjects/RegLabOIB/RegLabOIB/Views/MainWindow.axaml]
+[C:/Users/sasha/RiderProjects/RegLabOIB/RegLabOIB/Views/MainWindow.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml

@@ -1,4 +1,4 @@
-<Window xmlns="https://github.com/avaloniaui"
+<Window Background="DimGray"  Foreground="WhiteSmoke" FontFamily="Timew New Roman" FontSize="14" xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="using:RegLabOIB.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -7,14 +7,25 @@
         x:Class="RegLabOIB.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
-        Title="RegLabOIB">
+        Title="RegistrationDefense">
 
     <Design.DataContext>
         <!-- This only sets the DataContext for the previewer in an IDE,
              to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
         <vm:MainWindowViewModel/>
     </Design.DataContext>
-
-    <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-
+    <Grid>
+        <StackPanel   HorizontalAlignment="Right" VerticalAlignment="Bottom" Orientation="Vertical">
+            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="Нет аккаунта?"></TextBlock>
+            <Button Margin="20 20 20 20 " Width="150" Content="Зарегистрироваться"></Button>
+        </StackPanel>
+        
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Vertical">
+            <TextBlock Margin="0 0 0 10 " HorizontalAlignment="Center" Text="Авторизация"></TextBlock>
+            <TextBox Margin="10" Width="250" HorizontalAlignment="Center"  Background="LightSteelBlue" Watermark="Login:"></TextBox>
+            <TextBox Margin="10"  Width="250" HorizontalAlignment="Center"  Background="LightSteelBlue" Watermark="Password:"></TextBox>
+            <Button Margin="0 20 0 0 " HorizontalAlignment="Center" Width="150" Content="Войти"></Button>
+        </StackPanel>
+    </Grid>
+    
 </Window>

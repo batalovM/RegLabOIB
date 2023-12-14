@@ -4693,19 +4693,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\batal\\.nuget\\packages\\": {}
+    "C:\\Users\\sasha\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\batal\\RiderProjects\\RegLabOIB\\RegLabOIB\\RegLabOIB.csproj",
+      "projectUniqueName": "C:\\Users\\sasha\\RiderProjects\\RegLabOIB\\RegLabOIB\\RegLabOIB.csproj",
       "projectName": "RegLabOIB",
-      "projectPath": "C:\\Users\\batal\\RiderProjects\\RegLabOIB\\RegLabOIB\\RegLabOIB.csproj",
-      "packagesPath": "C:\\Users\\batal\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\batal\\RiderProjects\\RegLabOIB\\RegLabOIB\\obj\\",
+      "projectPath": "C:\\Users\\sasha\\RiderProjects\\RegLabOIB\\RegLabOIB\\RegLabOIB.csproj",
+      "packagesPath": "C:\\Users\\sasha\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\sasha\\RiderProjects\\RegLabOIB\\RegLabOIB\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\batal\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\sasha\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
