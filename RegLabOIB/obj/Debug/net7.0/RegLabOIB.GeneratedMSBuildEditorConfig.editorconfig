@@ -20,3 +20,9 @@ build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
 [C:/Users/batal/RiderProjects/RegLabOIB/RegLabOIB/Views/MainWindow.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[C:/Users/sasha/RiderProjects/RegLabOIB/RegLabOIB/Views/ProgramWindow.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[C:/Users/sasha/RiderProjects/RegLabOIB/RegLabOIB/Views/RegistationWindow.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
