@@ -1,18 +1,42 @@
-﻿namespace RegLabOIB.Models;
+﻿using System;
+using System.Collections.Generic;
+
+namespace RegLabOIB.Models;
 
 public class User : Accessible
 {
-    private string _loginUser;
-    private string _passwordUser;
+    private string _login;
+    private string _password;
+    private string _salt;
+    private string _mail;
 
-    public User(string login, string password)
+    public string Login => _login;
+
+    public string Password => _password;
+
+    public string Salt => _salt;
+
+    public string Mail => _mail;
+    // public string login
+    // {
+    //     get { return _login; }
+    //     set{}
+    // }
+    public User(string login, string password, string mail, string salt)
     {
-        _loginUser = login;
-        _passwordUser = password;
+        _login = login;
+        _password = password;
+        _mail = mail;
+        _salt = salt;
+        
     }
 
     public void CheckPermission()
     {
         throw new System.NotImplementedException();
     }
+
+    
+
+
 }

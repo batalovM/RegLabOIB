@@ -23,8 +23,8 @@
         
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Vertical">
             <TextBlock Margin="0 0 0 10 " HorizontalAlignment="Center" Text="Авторизация"></TextBlock>
-            <TextBox Margin="10" Width="250" HorizontalAlignment="Center"  Background="LightSteelBlue" Watermark="Login:"></TextBox>
-            <TextBox Margin="10"  Width="250" HorizontalAlignment="Center"  Background="LightSteelBlue" Watermark="Password:"></TextBox>
+            <TextBox Text="{Binding Login, Mode=TwoWay}" Margin="10" Width="250" HorizontalAlignment="Center"  Background="LightSteelBlue" Watermark="Login:"></TextBox>
+            <TextBox Text="{Binding Password, Mode=TwoWay}" Margin="10"  Width="250" HorizontalAlignment="Center"  Background="LightSteelBlue" Watermark="Password:"></TextBox>
             <Button Command="{Binding LoginCommand}" Margin="0 20 0 0 " HorizontalAlignment="Center" Width="150" Content="Войти"></Button>
         </StackPanel>
     </Grid>

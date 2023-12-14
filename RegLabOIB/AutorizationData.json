@@ -1,0 +1,14 @@
+[
+  {
+    "Login": "1111",
+    "Password": "1111",
+    "Salt": "5555555555",
+    "Mail": "1111"
+  },
+  {
+    "Login": "Sasha",
+    "Password": "123",
+    "Salt": "5555555555",
+    "Mail": "sasha.surikov.03@mail.ru"
+  }
+]
