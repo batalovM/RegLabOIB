@@ -4,7 +4,6 @@
     <option name="projectPerEditor">
       <map>
         <entry key="RegLabOIB/Views/MainWindow.axaml" value="RegLabOIB/RegLabOIB.csproj" />
-        <entry key="RegLabOIB/Views/RegistationWindow.axaml" value="RegLabOIB/RegLabOIB.csproj" />
       </map>
     </option>
   </component>
