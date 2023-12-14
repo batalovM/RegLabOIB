@@ -25,7 +25,10 @@ public class MainWindowViewModel : ViewModelBase
     }
     private void Registr()
     {
-        throw new System.NotImplementedException();
+        var regWindow = new RegistationWindow();
+        regWindow.DataContext = new RegistrationWindowViewModel();
+        regWindow.Show();
+        CloseMethod();
     }
     private void CloseMethod()
     {

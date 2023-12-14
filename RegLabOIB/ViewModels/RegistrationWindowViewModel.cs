@@ -6,26 +6,28 @@ using RegLabOIB.Views;
 
 namespace RegLabOIB.ViewModels;
 
-public class ProgramWindowViewModel : ViewModelBase
+public class RegistrationWindowViewModel: ViewModelBase
 {
-    public ReactiveCommand<Unit,Unit> QuitCommand { get; }
-
-    public ProgramWindowViewModel()
+    public ReactiveCommand<Unit, Unit> RegCommand { get; }
+    
+    
+    public RegistrationWindowViewModel()
     {
-        QuitCommand = ReactiveCommand.Create(Quit);
+        RegCommand = ReactiveCommand.Create(Registration);
+        
     }
 
-    public void Quit()
+    public void Registration()
     {
         var logWindow = new MainWindow();
         logWindow.DataContext = new MainWindowViewModel();
         logWindow.Show();
         CloseMethod();
-        
     }
     private void CloseMethod()
     {
         var window = (Application.Current?.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime)?.MainWindow;
         window?.Close();
     }
+    
 }
