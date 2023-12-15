@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Reactive;
+using System.Security.Cryptography;
+using System.Text;
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Newtonsoft.Json;
@@ -13,6 +15,7 @@ namespace RegLabOIB.ViewModels;
 
 public class RegistrationWindowViewModel: ViewModelBase
 {
+    private string salt = "55555555";
     public ReactiveCommand<Unit, Unit> RegCommand { get; }
     private string _login;
     private  string _password;
@@ -56,7 +59,9 @@ public class RegistrationWindowViewModel: ViewModelBase
 
     public void AddNewUser()
     {
-        User user = new User(Login, Password, Mail, "5555555555");
+        Password = HashPassword(_password);
+        User user = new User(Login, Password, Mail, salt);
+        Console.WriteLine(user.Password);
         string json = File.ReadAllText(Path);
         List<User> list = JsonConvert.DeserializeObject<List<User>>(json);
         if (list == null)
@@ -67,4 +72,21 @@ public class RegistrationWindowViewModel: ViewModelBase
         string newjson = JsonConvert.SerializeObject(list, Formatting.Indented);
         File.WriteAllText(Path,newjson);
     }
+
+    public string HashPassword(string pass)
+    {
+        pass += salt;
+        byte[] tmpPass;
+        byte[] tmpHash;
+        tmpPass = ASCIIEncoding.ASCII.GetBytes(pass);
+        tmpHash = new MD5CryptoServiceProvider().ComputeHash(tmpPass);
+        
+        StringBuilder sOutput = new StringBuilder(tmpHash.Length);
+        for (int i=0;i < tmpHash.Length; i++)
+        {
+            sOutput.Append(tmpHash[i].ToString("X2"));
+        }
+        return sOutput.ToString();
+    }
+
 }

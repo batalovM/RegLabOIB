@@ -1,8 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Reactive;
+using System.Security.Cryptography;
+using System.Text;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
@@ -57,17 +60,39 @@ public class MainWindowViewModel : ViewModelBase
     {
         var json = File.ReadAllText(Path);
         List<User> list = JsonConvert.DeserializeObject<List<User>>(json);
-        if ((list.Any(user => user.Login == Login) && list.Any(user => user.Password == Password)) == true)
+        var selectedUser = list.Where(user => user.Login == Login);
+        foreach (User user in selectedUser)
         {
-            var prWindow = new ProgramWindow();
-            prWindow.DataContext = new ProgramWindowViewModel();
-            prWindow.Show();
-            CloseMethod();
-        }
-        else
-        {
-            
+            string hashPAssword = HashPassword(Password, user.Salt);
+            Console.WriteLine(hashPAssword);
+            if (user.Password == hashPAssword)
+            {
+                var prWindow = new ProgramWindow();
+                prWindow.DataContext = new ProgramWindowViewModel();
+                prWindow.Show();
+                CloseMethod();
+            }
+            else
+            {
+                
+            }
         }
 
     }
+    public string HashPassword(string pass, string salt)
+    {
+        pass += salt;
+        byte[] tmpPass;
+        byte[] tmpHash;
+        tmpPass = ASCIIEncoding.ASCII.GetBytes(pass);
+        tmpHash = new MD5CryptoServiceProvider().ComputeHash(tmpPass);
+        
+        StringBuilder sOutput = new StringBuilder(tmpHash.Length);
+        for (int i=0;i < tmpHash.Length; i++)
+        {
+            sOutput.Append(tmpHash[i].ToString("X2"));
+        }
+        return sOutput.ToString();
+    }
+    
 }
