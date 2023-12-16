@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 
 namespace RegLabOIB.Models;
 
-public class User : Accessible
+public class User : Accessible, ISalt
 {
     private string _login;
     private string _password;
@@ -35,25 +36,13 @@ public class User : Accessible
         get => _salt;
         set => _salt = value ?? throw new ArgumentNullException(nameof(value));
     }
-    // public string Login => _login;
-    //
-    // public string Password => _password;
-    //
-    // public string Salt => _salt;
-    //
-    // public string Mail => _mail;
-    // public string login
-    // {
-    //     get { return _login; }
-    //     set{}
-    // }
+   
     public User(string login, string password, string mail, string salt)
     {
         _login = login;
         _password = password;
         _mail = mail;
         _salt = salt;
-        
     }
 
     public void CheckPermission()
@@ -61,5 +50,13 @@ public class User : Accessible
         throw new System.NotImplementedException();
     }
 
-    
+
+    string ISalt.Salt()
+    {
+        const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        var random = new Random();
+        var result = new string(Enumerable.Repeat(chars, 8)
+            .Select(s => s[random.Next(s.Length)]).ToArray());
+        return result;
+    }
 }
