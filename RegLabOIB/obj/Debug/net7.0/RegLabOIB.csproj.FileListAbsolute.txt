@@ -271,3 +271,4 @@ C:\Users\sasha\RiderProjects\RegLabOIB\RegLabOIB\obj\Debug\net7.0\RegLabOIB.pdb
 C:\Users\sasha\RiderProjects\RegLabOIB\RegLabOIB\obj\Debug\net7.0\RegLabOIB.csproj.CopyComplete
 C:\Users\sasha\RiderProjects\RegLabOIB\RegLabOIB\obj\Debug\net7.0\RegLabOIB.genruntimeconfig.cache
 C:\Users\sasha\RiderProjects\RegLabOIB\RegLabOIB\obj\Debug\net7.0\ref\RegLabOIB.dll
+C:\Users\batal\RiderProjects\RegLabOIB\RegLabOIB\bin\Debug\net7.0\Newtonsoft.Json.dll

@@ -24,12 +24,12 @@ public class MainWindowViewModel : ViewModelBase
     public string Password
     {
         get { return _password; }
-        set { this.RaiseAndSetIfChanged(ref _password, value); }
+        set => this.RaiseAndSetIfChanged(ref _password, value);
     }
     public string Login
     {
-        get { return _login; }
-        set { this.RaiseAndSetIfChanged(ref _login, value);}
+        get => _login;
+        set => this.RaiseAndSetIfChanged(ref _login, value);
     }
     public ReactiveCommand<Unit, Unit> LoginCommand { get; }
     public ReactiveCommand<Unit, Unit> RegisterCommand { get; }
@@ -56,14 +56,14 @@ public class MainWindowViewModel : ViewModelBase
         window?.Close();
     }
 
-    public void DeserializeAndCheck()
+    private void DeserializeAndCheck()
     {
         var json = File.ReadAllText(Path);
-        List<User> list = JsonConvert.DeserializeObject<List<User>>(json);
+        var list = JsonConvert.DeserializeObject<List<User>>(json);
         var selectedUser = list.Where(user => user.Login == Login);
         foreach (User user in selectedUser)
         {
-            string hashPAssword = HashPassword(Password, user.Salt);
+            var hashPAssword = HashPassword(Password, user.Salt);
             Console.WriteLine(hashPAssword);
             if (user.Password == hashPAssword)
             {
@@ -72,14 +72,11 @@ public class MainWindowViewModel : ViewModelBase
                 prWindow.Show();
                 CloseMethod();
             }
-            else
-            {
-                
-            }
         }
 
     }
-    public string HashPassword(string pass, string salt)
+
+    private string HashPassword(string pass, string salt)
     {
         pass += salt;
         byte[] tmpPass;
@@ -88,9 +85,9 @@ public class MainWindowViewModel : ViewModelBase
         tmpHash = new MD5CryptoServiceProvider().ComputeHash(tmpPass);
         
         StringBuilder sOutput = new StringBuilder(tmpHash.Length);
-        for (int i=0;i < tmpHash.Length; i++)
+        foreach (var t in tmpHash)
         {
-            sOutput.Append(tmpHash[i].ToString("X2"));
+            sOutput.Append(t.ToString("X2"));
         }
         return sOutput.ToString();
     }
