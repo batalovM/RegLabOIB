@@ -25,10 +25,12 @@ public class ProgramWindowViewModel : ViewModelBase
         
     }
 
-    public void Quit()
+    private void Quit()
     {
-        var logWindow = new MainWindow();
-        logWindow.DataContext = new MainWindowViewModel();
+        var logWindow = new MainWindow
+        {
+            DataContext = new MainWindowViewModel()
+        };
         logWindow.Show();
         CloseMethod();
         

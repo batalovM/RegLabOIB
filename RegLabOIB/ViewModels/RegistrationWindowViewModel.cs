@@ -23,18 +23,18 @@ public class RegistrationWindowViewModel: ViewModelBase
     private const string Path = @"C:\Users\sasha\RiderProjects\RegLabOIB\RegLabOIB\AutorizationData.json";
     public string Password
     {
-        get { return _password; }
-        set { this.RaiseAndSetIfChanged(ref _password, value); }
+        get => _password;
+        set => this.RaiseAndSetIfChanged(ref _password, value);
     }
     public string Mail
     {
-        get { return _mail; }
-        set { this.RaiseAndSetIfChanged(ref _mail, value); }
+        get => _mail;
+        set => this.RaiseAndSetIfChanged(ref _mail, value);
     }
     public string Login
     {
-        get { return _login; }
-        set { this.RaiseAndSetIfChanged(ref _login, value);}
+        get => _login;
+        set => this.RaiseAndSetIfChanged(ref _login, value);
     }
     public RegistrationWindowViewModel()
     {
@@ -43,11 +43,13 @@ public class RegistrationWindowViewModel: ViewModelBase
         
     }
 
-    public void Registration()
+    private void Registration()
     {
         AddNewUser();
-        var logWindow = new MainWindow();
-        logWindow.DataContext = new MainWindowViewModel();
+        var logWindow = new MainWindow
+        {
+            DataContext = new MainWindowViewModel()
+        };
         logWindow.Show();
         CloseMethod();
     }
@@ -57,34 +59,32 @@ public class RegistrationWindowViewModel: ViewModelBase
         window?.Close();
     }
 
-    public void AddNewUser()
+    private void AddNewUser()
     {
         Password = HashPassword(_password);
-        User user = new User(Login, Password, Mail, salt);
+        var user = new User(Login, Password, Mail, salt);
         Console.WriteLine(user.Password);
-        string json = File.ReadAllText(Path);
-        List<User> list = JsonConvert.DeserializeObject<List<User>>(json);
+        var json = File.ReadAllText(Path);
+        var list = JsonConvert.DeserializeObject<List<User>>(json);
         if (list == null)
         {
             list = new List<User>();
         }
         list.Add(user);
-        string newjson = JsonConvert.SerializeObject(list, Formatting.Indented);
+        var newjson = JsonConvert.SerializeObject(list, Formatting.Indented);
         File.WriteAllText(Path,newjson);
     }
 
-    public string HashPassword(string pass)
+    private string HashPassword(string pass)
     {
         pass += salt;
-        byte[] tmpPass;
-        byte[] tmpHash;
-        tmpPass = ASCIIEncoding.ASCII.GetBytes(pass);
-        tmpHash = new MD5CryptoServiceProvider().ComputeHash(tmpPass);
+        var tmpPass = ASCIIEncoding.ASCII.GetBytes(pass);
+        var tmpHash = new MD5CryptoServiceProvider().ComputeHash(tmpPass);
         
-        StringBuilder sOutput = new StringBuilder(tmpHash.Length);
-        for (int i=0;i < tmpHash.Length; i++)
+        var sOutput = new StringBuilder(tmpHash.Length);
+        foreach (var t in tmpHash)
         {
-            sOutput.Append(tmpHash[i].ToString("X2"));
+            sOutput.Append(t.ToString("X2"));
         }
         return sOutput.ToString();
     }
