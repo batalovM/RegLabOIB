@@ -15,11 +15,18 @@
                                 
                         </TextBlock>
                 </Button>
-                <StackPanel Orientation="Horizontal">
-                        <Button CornerRadius="10" Width="50" Height="50"></Button>
-                        <Button CornerRadius="10" Width="50" Height="50"></Button>
-                        <Button CornerRadius="10" Width="50" Height="50"></Button>
-                        <Button CornerRadius="10" Width="50" Height="50"></Button>
+                <StackPanel Margin="20">
+                        <TextBlock Margin="0 5">Documents</TextBlock>
+                        <ItemsControl ItemsSource="{Binding DocumentList}" >
+                                <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                                <StackPanel Orientation="Vertical">
+                                                        <Button Command="{Binding OpenDocument}" Height="50" CornerRadius="10" Content="{Binding DocumentName}"></Button>
+                                                </StackPanel>
+                                                
+                                        </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                        </ItemsControl>
                 </StackPanel>
         </Grid>
     

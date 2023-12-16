@@ -4,5 +4,11 @@
     "Password": "A30DF71D6DD080B6A8B69E271378B160",
     "Mail": "sasha.surikov.03@mail.ru",
     "Salt": "55555555"
+  },
+  {
+    "Login": "123",
+    "Password": "A30DF71D6DD080B6A8B69E271378B160",
+    "Mail": "sadsadasd",
+    "Salt": "55555555"
   }
 ]
