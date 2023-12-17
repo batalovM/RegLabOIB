@@ -10,7 +10,8 @@
         Title="ProgramWindow">
         
         <Grid>
-                <Button Margin="10" Command="{Binding QuitCommand}" Width="80" VerticalAlignment="Top" HorizontalAlignment="Right" >
+                <Button Margin="10" IsCancel="True" Click="Button_OnClickQuit"
+                        Width="80" VerticalAlignment="Top" HorizontalAlignment="Right" >
                         <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="Выйти">
                                 
                         </TextBlock>

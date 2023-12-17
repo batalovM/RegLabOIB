@@ -5,6 +5,7 @@ using System.Reactive;
 using System.Security.Cryptography;
 using System.Text;
 using Avalonia;
+using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using Newtonsoft.Json;
 using ReactiveUI;
@@ -20,11 +21,11 @@ public class RegistrationWindowViewModel: ViewModelBase
     private string _login;
     private  string _password;
     private  string _mail;
-    private const string Path = @"C:\Users\sasha\RiderProjects\RegLabOIB\RegLabOIB\AutorizationData.json";
+    private const string Path = @"C:\Users\batal\RiderProjects\RegLabOIB\RegLabOIB\AutorizationData.json";
+    private MainWindowViewModel _mv;
     public string Password
     {
         get => _password;
-        set => this.RaiseAndSetIfChanged(ref _password, value);
     }
     public string Mail
     {
@@ -43,7 +44,7 @@ public class RegistrationWindowViewModel: ViewModelBase
         
     }
 
-    private void Registration()
+    public void Registration()
     {
         AddNewUser();
         var logWindow = new MainWindow
@@ -61,7 +62,7 @@ public class RegistrationWindowViewModel: ViewModelBase
 
     private void AddNewUser()
     {
-        Password = HashPassword(_password);
+        _password = HashPassword(_password);
         var user = new User(Login, Password, Mail, salt);
         Console.WriteLine(user.Password);
         var json = File.ReadAllText(Path);

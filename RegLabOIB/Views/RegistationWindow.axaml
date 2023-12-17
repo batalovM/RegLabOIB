@@ -15,7 +15,7 @@
                                 <TextBox Text="{Binding Mail, Mode=TwoWay}" Margin="10" Watermark="Почта:" Width="250"></TextBox>
                                 <TextBox Text="{Binding Login, Mode=TwoWay}" Margin="10" Watermark="Логин:" Width="250"></TextBox>
                                 <TextBox Text="{Binding Password, Mode=TwoWay}"  Margin="10" Watermark="Пароль:" Width="250"></TextBox>
-                                <Button Command="{Binding RegCommand}" HorizontalAlignment="Center" Margin="10" Content="Зарегистритроваться"></Button>
+                                <Button Click="Button_OnClick" HorizontalAlignment="Center" Margin="10" Content="Зарегистритроваться"></Button>
                         </StackPanel>
                 </Grid>
                 
