@@ -18,7 +18,8 @@ namespace RegLabOIB.ViewModels;
 
 public class MainWindowViewModel : ViewModelBase
 {
-    private const string Path = @"C:\Users\sasha\RiderProjects\RegLabOIB\RegLabOIB\AutorizationData.json";
+    
+    private const string Path = @"C:\Users\batal\RiderProjects\RegLabOIB\RegLabOIB\AutorizationData.json";
     private string _password;
     private string _login;
     public string Password
@@ -34,21 +35,26 @@ public class MainWindowViewModel : ViewModelBase
     public ReactiveCommand<Unit, Unit> LoginCommand { get; }
     public ReactiveCommand<Unit, Unit> RegisterCommand { get; }
 
-    public MainWindowViewModel()
+    public MainWindowViewModel( )
     {
+        
         LoginCommand = ReactiveCommand.Create(Autorization);
         RegisterCommand = ReactiveCommand.Create(Registr);
     }
-    private void Autorization()
+    public void Autorization()
     {
-        DeserializeAndCheck();
+        if(DeserializeAndCheck());
+        
     }
     private void Registr()
     {
-        var regWindow = new RegistationWindow();
-        regWindow.DataContext = new RegistrationWindowViewModel();
+        
+        var regWindow = new RegistationWindow
+        {
+            DataContext = new MainWindowViewModel()
+        };
         regWindow.Show();
-        CloseMethod();
+        
     }
     private void CloseMethod()
     {
@@ -56,7 +62,7 @@ public class MainWindowViewModel : ViewModelBase
         window?.Close();
     }
 
-    private void DeserializeAndCheck()
+    private bool DeserializeAndCheck()
     {
         var json = File.ReadAllText(Path);
         var list = JsonConvert.DeserializeObject<List<User>>(json);
@@ -67,15 +73,12 @@ public class MainWindowViewModel : ViewModelBase
             Console.WriteLine(hashPAssword);
             if (user.Password == hashPAssword)
             {
-                var prWindow = new ProgramWindow();
-                prWindow.DataContext = new ProgramWindowViewModel();
-                prWindow.Show();
-                CloseMethod();
+                return true;
             }
         }
 
+        return false;
     }
-
     private string HashPassword(string pass, string salt)
     {
         pass += salt;
@@ -85,10 +88,12 @@ public class MainWindowViewModel : ViewModelBase
         tmpHash = new MD5CryptoServiceProvider().ComputeHash(tmpPass);
         
         StringBuilder sOutput = new StringBuilder(tmpHash.Length);
-        foreach (var t in tmpHash)
+        for (int i=0;i < tmpHash.Length; i++)
         {
-            sOutput.Append(t.ToString("X2"));
+
+            sOutput.Append(tmpHash[i].ToString("X2"));
         }
+
         return sOutput.ToString();
     }
     
