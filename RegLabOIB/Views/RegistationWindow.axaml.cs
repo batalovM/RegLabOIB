@@ -17,8 +17,12 @@ public partial class RegistationWindow : Window
 
     private void Button_OnClick(object? sender, RoutedEventArgs e)
     {
-        rwvm.Registration();
         DataContext = new MainWindowViewModel();
+        var logWindow = new MainWindow
+        {
+            DataContext = new MainWindowViewModel()
+        };
+        logWindow.Show();
         Close();
     }
 }

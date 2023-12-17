@@ -1,14 +1,20 @@
 [
   {
-    "Login": "Sasha",
-    "Password": "A30DF71D6DD080B6A8B69E271378B160",
+    "Login": "Admin",
+    "Password": "266E06113139E1A009C2855CB729DF4D",
     "Mail": "sasha.surikov.03@mail.ru",
-    "Salt": "55555555"
+    "Salt": "6YOQQ7sL"
   },
   {
-    "Login": "123",
-    "Password": "A30DF71D6DD080B6A8B69E271378B160",
-    "Mail": "sadsadasd",
-    "Salt": "55555555"
+    "Login": "Max",
+    "Password": "F89C41C6C96C59F17599D8AC1071CEEB",
+    "Mail": "maxim",
+    "Salt": "E8hGXczW"
+  },
+  {
+    "Login": "Denis",
+    "Password": "73590ED477204F231779331083578F5C",
+    "Mail": "pros.prosqqq@mail.ru",
+    "Salt": "xVSdm0xu"
   }
 ]

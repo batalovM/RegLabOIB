@@ -1,11 +1,15 @@
 ﻿using System;
+using System.Reactive;
+using ReactiveUI;
 
 namespace RegLabOIB.Models;
 
-public class Document: IOpenDocument
+public class Document
 {
     private string _documentName;
     private string _documentPath;
+    public ReactiveCommand<Unit, Unit> Opendocument{ get; }
+    
     
     public string DocumentPath
     {
@@ -25,8 +29,9 @@ public class Document: IOpenDocument
         _documentName = documentName;
 
     }
-    public void OpenDocument(string documentPath)
+    
+    public void OpenDocument()
     {
-        System.Diagnostics.Process.Start(documentPath);
+        System.Diagnostics.Process.Start(_documentPath);
     }
 }

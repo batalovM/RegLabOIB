@@ -19,7 +19,9 @@ namespace RegLabOIB.ViewModels;
 public class MainWindowViewModel : ViewModelBase
 {
     
-    private const string Path = @"C:\Users\batal\RiderProjects\RegLabOIB\RegLabOIB\AutorizationData.json";
+    private const string Path = @"C:\Users\sasha\RiderProjects\RegLabOIB\RegLabOIB\AutorizationData.json";
+    private const string Path2 = @"C:\Users\sasha\RiderProjects\RegLabOIB\RegLabOIB\userAutorizated.json";
+    public bool access = false;
     private string _password;
     private string _login;
     public string Password
@@ -43,7 +45,14 @@ public class MainWindowViewModel : ViewModelBase
     }
     public void Autorization()
     {
-        if(DeserializeAndCheck());
+        if (DeserializeAndCheck())
+        {
+            var progwindow = new ProgramWindow()
+            {
+                DataContext = new ProgramWindowViewModel()
+            };
+            progwindow.Show();
+        }
         
     }
     private void Registr()
@@ -61,8 +70,16 @@ public class MainWindowViewModel : ViewModelBase
         var window = (Application.Current?.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime)?.MainWindow;
         window?.Close();
     }
+    public class AutorizationUser
+    { 
+        public string loginUser;
 
-    private bool DeserializeAndCheck()
+        public AutorizationUser(string loginUser)
+        {
+            this.loginUser = loginUser;
+        }
+    }
+    public bool DeserializeAndCheck()
     {
         var json = File.ReadAllText(Path);
         var list = JsonConvert.DeserializeObject<List<User>>(json);
@@ -73,10 +90,23 @@ public class MainWindowViewModel : ViewModelBase
             Console.WriteLine(hashPAssword);
             if (user.Password == hashPAssword)
             {
+                var json2 = File.ReadAllText(Path2);
+                var userAuto = JsonConvert.DeserializeObject<AutorizationUser>(json2);
+                if (userAuto == null)
+                {
+                    userAuto = new AutorizationUser(user.Login);
+                }
+                else
+                {
+                    userAuto.loginUser = user.Login;
+                }
+                var newjson = JsonConvert.SerializeObject(userAuto, Formatting.Indented);
+                File.WriteAllText(Path2,newjson);
+                access = true;
                 return true;
             }
         }
-
+        access = false;
         return false;
     }
     private string HashPassword(string pass, string salt)

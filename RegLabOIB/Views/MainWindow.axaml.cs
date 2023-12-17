@@ -24,9 +24,11 @@ public partial class MainWindow : Window
 
     private void Button_OnClickLogin(object? sender, RoutedEventArgs e)
     {
-        mv.Autorization();
-        DataContext = new ProgramWindowViewModel();
-        ProgramWindow.Show();
-        Close();
+        if (mv.access == true)
+        {
+            DataContext = new ProgramWindowViewModel();
+            Close();
+        }
+        
     }
 }

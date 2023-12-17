@@ -25,7 +25,7 @@
             <TextBlock Margin="0 0 0 10 " HorizontalAlignment="Center" Text="Авторизация"></TextBlock>
             <TextBox Text="{Binding Login, Mode=TwoWay}" Margin="10" Width="250" HorizontalAlignment="Center"  Background="LightSteelBlue" Watermark="Login:"></TextBox>
             <TextBox Text="{Binding Password, Mode=TwoWay}" Margin="10"  Width="250" HorizontalAlignment="Center"  Background="LightSteelBlue" Watermark="Password:"></TextBox>
-            <Button Click="Button_OnClickLogin" Margin="0 20 0 0 " HorizontalAlignment="Center" Width="150" Content="Войти"></Button>
+            <Button Command="{Binding LoginCommand}" Click="Button_OnClickLogin" Margin="0 20 0 0 " HorizontalAlignment="Center" Width="150" Content="Войти"></Button>
         </StackPanel>
     </Grid>
     

@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Reactive;
 using System.Security.Cryptography;
 using System.Text;
 using Avalonia;
-using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using Newtonsoft.Json;
 using ReactiveUI;
@@ -16,16 +16,16 @@ namespace RegLabOIB.ViewModels;
 
 public class RegistrationWindowViewModel: ViewModelBase
 {
-    private string salt = "55555555";
+    private string salt;
     public ReactiveCommand<Unit, Unit> RegCommand { get; }
-    private string _login;
+    private  string _login;
     private  string _password;
     private  string _mail;
-    private const string Path = @"C:\Users\batal\RiderProjects\RegLabOIB\RegLabOIB\AutorizationData.json";
-    private MainWindowViewModel _mv;
+    private const string Path = @"C:\Users\sasha\RiderProjects\RegLabOIB\RegLabOIB\AutorizationData.json";
     public string Password
     {
         get => _password;
+        set => this.RaiseAndSetIfChanged(ref _password, value);
     }
     public string Mail
     {
@@ -47,12 +47,11 @@ public class RegistrationWindowViewModel: ViewModelBase
     public void Registration()
     {
         AddNewUser();
-        var logWindow = new MainWindow
-        {
-            DataContext = new MainWindowViewModel()
-        };
-        logWindow.Show();
-        CloseMethod();
+        // var logWindow = new MainWindow
+        // {
+        //     DataContext = new MainWindowViewModel()
+        // };
+        // logWindow.Show();
     }
     private void CloseMethod()
     {
@@ -60,11 +59,13 @@ public class RegistrationWindowViewModel: ViewModelBase
         window?.Close();
     }
 
-    private void AddNewUser()
+    public void AddNewUser()
     {
-        _password = HashPassword(_password);
+        Password = HashPassword(_password);
         var user = new User(Login, Password, Mail, salt);
         Console.WriteLine(user.Password);
+        Console.WriteLine(user.Login);
+        Console.WriteLine(user.Mail);
         var json = File.ReadAllText(Path);
         var list = JsonConvert.DeserializeObject<List<User>>(json);
         if (list == null)
@@ -78,6 +79,7 @@ public class RegistrationWindowViewModel: ViewModelBase
 
     private string HashPassword(string pass)
     {
+        salt = Salt();
         pass += salt;
         var tmpPass = ASCIIEncoding.ASCII.GetBytes(pass);
         var tmpHash = new MD5CryptoServiceProvider().ComputeHash(tmpPass);
@@ -89,5 +91,12 @@ public class RegistrationWindowViewModel: ViewModelBase
         }
         return sOutput.ToString();
     }
-
+    string Salt()
+    {
+        const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        var random = new Random();
+        var result = new string(Enumerable.Repeat(chars, 8)
+            .Select(s => s[random.Next(s.Length)]).ToArray());
+        return result;
+    }
 }

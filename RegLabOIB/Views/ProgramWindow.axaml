@@ -18,16 +18,26 @@
                 </Button>
                 <StackPanel Margin="20">
                         <TextBlock Margin="0 5">Documents</TextBlock>
-                        <ItemsControl ItemsSource="{Binding DocumentList}" >
-                                <ItemsControl.ItemTemplate>
-                                        <DataTemplate>
-                                                <StackPanel Orientation="Vertical">
-                                                        <Button Command="{Binding OpenDocument}" Height="50" CornerRadius="10" Content="{Binding DocumentName}"></Button>
-                                                </StackPanel>
+                        <Border Background="Gray" Width="600" Height="600">
+                                <ScrollViewer>
+                                        <ItemsControl ItemsSource="{Binding DocumentList}" >
+                                                <ItemsControl.ItemTemplate>
+                                                        <DataTemplate>
+                                                                
+                                                                
+                                                                <StackPanel Orientation="Horizontal">
+                                                                        <Grid RowDefinitions="*,4*">
+                                                                                <TextBlock Margin="10" Grid.Row="0" Text="{Binding DocumentName}"></TextBlock>
+                                                                                <TextBlock Margin="10" Grid.Row="1" Text="{Binding DocumentPath}"></TextBlock>
+                                                                        </Grid>
+                                                                </StackPanel>
+                                                  
                                                 
-                                        </DataTemplate>
-                                </ItemsControl.ItemTemplate>
-                        </ItemsControl>
+                                                        </DataTemplate>
+                                                </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                </ScrollViewer>
+                        </Border>                
                 </StackPanel>
         </Grid>
     

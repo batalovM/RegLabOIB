@@ -1,8 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Reactive;
 using Avalonia;
+using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
+using Newtonsoft.Json;
 using ReactiveUI;
 using RegLabOIB.Models;
 using RegLabOIB.Views;
@@ -11,33 +14,64 @@ namespace RegLabOIB.ViewModels;
 
 public class ProgramWindowViewModel : ViewModelBase
 {
-    private const string path = @"C:\Users\sasha\RiderProjects\RegLabOIB\RegLabOIB\Assets\Documents\Отчет.docx";
+
+    private const string path = @"C:\Users\sasha\RiderProjects\RegLabOIB\RegLabOIB\userAutorizated.json";
+    public const string adminLogin = "Admin";
+    public const string User1 = "Max";
+    public const string User2 = "Denis";
+    
     public ObservableCollection<Document> DocumentList { get; set; }
-    public ReactiveCommand<Unit,Unit> QuitCommand { get; }
 
     public ProgramWindowViewModel()
     {
-        QuitCommand = ReactiveCommand.Create(Quit);
-        DocumentList = new ObservableCollection<Document>(new List<Document>
-        {
-            new Document("Отчет", path)
-        });
+        CheckUser();
         
     }
 
-    private void Quit()
+    // private void Quit()
+    // {
+    //     var logWindow = new MainWindow
+    //     {
+    //         DataContext = new MainWindowViewModel()
+    //     };
+    //     logWindow.Show();
+    //     CloseMethod();
+    // }
+
+    public void CheckUser()
     {
-        var logWindow = new MainWindow
+        var json2 = File.ReadAllText(path);
+        var userAuto = JsonConvert.DeserializeObject<MainWindowViewModel.AutorizationUser>(json2);
+        if (userAuto.loginUser == adminLogin)
         {
-            DataContext = new MainWindowViewModel()
-        };
-        logWindow.Show();
-        CloseMethod();
-        
+            DocumentList = new ObservableCollection<Document>(new List<Document>
+            {
+                new Document("Отчет", "Договор купли-продажи автомобиля\n(автомототранспортного средства, прицепа, номерного агрегата)\nГород Новосибирск \nМы, Продавец Иван Иванов Иванович,\nдата рождения 11.09.2001, проживающий по адресу г.Новосибирск ул.Пушкина 41/1 45\nпаспорт серии 3123 \u2116435673 выдан \"21\" 10 2015г. \nПокупатель Такой то такой то такойто,\nдата рождения такая то такая то, проживающий по адресу где то там\nпаспорт серии \"какая то серия\" \u2116 \"какой то номер\" выдан \"когда то\" тогда то 2018 г.,\nзаключили настоящий договор о нижеследующем:\nПродавец продал, а Покупатель купил автомобиль (мотоцикл, прицеп, номерной агрегат):\nМарка, модель какая-то Категория ТС легковая\nТип транспортного средства по ПТС какой то Регистрационный знак такой то\nИдентификационный номер (VIN) БОДРЫЙ\nГод выпуска такой то Двигатель мощный Шасси хорошее\nКузов не битый не крашенный Цвет подливы\n2 Указанный автомобиль принадлежит Продавцу на основании паспорта транспортного средства\nсерии __________ \u2116__________, выданного ____ _____ _______ г. _______________________\n______________________________________________________ и свидетельства о регистрации\nсерии _________\u2116 _________, выданного ____ _____ _____г.____________________\n______________________________________________________________________________\n3 За проданный автомобиль (ТС) Продавец деньги в сумме _________________________________\n______________________________________________________ получил полностью.\n4 Продавец обязуется передать автомобиль (автомототранспортного средства, прицепа, номерного\nагрегата), указанный в настоящем договоре Покупателю. До заключения настоящего договора ТС никому\nне продано, не заложено, в споре и под арестом не состоит. Покупатель обязуется в течение 10 дней со дня\nподписания договора перерегистрировать автомобиль (автомототранспортное средство, прицеп, номерной\nагрегат) на себя. Настоящий договор составлен в трех экземплярах - по одному для каждой из сторон и для"),
+                new Document("Мой паспорт", "Серия, номер паспорта: 1452 465132\nФИО: Иванов Николай Александрович\nПол: Мужской\nДата рождения: 11.09.2001\nМесто рождение: Московская область, Город Москва, Родильный дом \u21161\nЗарегестрирован: Ул.Пушкина 45/1 кв.45"),
+                new Document("Почты", "1. example1@mail.ru\n2. testmail2@mail.ru\n3. randommail3@mail.ru\n4. fakeaddress4@mail.ru\n5. notrealmail5@mail.ru\n6. tempmail6@mail.ru\n7. fakemail7@mail.ru\n8. dummyemail8@mail.ru\n9. pretendmail9@mail.ru\n10. unrealmail10@mail.ru\n11. madeupmail11@mail.ru\n12. bogusmail12@mail.ru\n13. fictionalmail13@mail.ru\n14. pretendmail14@mail.ru\n15. dummyemail15@mail.ru\n16. notrealmail16@mail.ru\n17. fakemail17@mail.ru\n18. tempmail18@mail.ru\n19. randommail19@mail.ru\n20. example20@mail.ru")
+            });
+        }
+        if (userAuto.loginUser == User1)
+        {
+            DocumentList = new ObservableCollection<Document>(new List<Document>
+            {
+                new Document("Мой паспорт", "Серия, номер паспорта: 1452 465132\nФИО: Иванов Николай Александрович\nПол: Мужской\nДата рождения: 11.09.2001\nМесто рождение: Московская область, Город Москва, Родильный дом \u21161\nЗарегестрирован: Ул.Пушкина 45/1 кв.45")
+            });
+        }
+        if (userAuto.loginUser == User2)
+        {
+            DocumentList = new ObservableCollection<Document>(new List<Document>
+            {
+                new Document("Отчет", "Договор купли-продажи автомобиля\n(автомототранспортного средства, прицепа, номерного агрегата)\nГород Новосибирск \nМы, Продавец Иван Иванов Иванович,\nдата рождения 11.09.2001, проживающий по адресу г.Новосибирск ул.Пушкина 41/1 45\nпаспорт серии 3123 \u2116435673 выдан \"21\" 10 2015г. \nПокупатель Такой то такой то такойто,\nдата рождения такая то такая то, проживающий по адресу где то там\nпаспорт серии \"какая то серия\" \u2116 \"какой то номер\" выдан \"когда то\" тогда то 2018 г.,\nзаключили настоящий договор о нижеследующем:\nПродавец продал, а Покупатель купил автомобиль (мотоцикл, прицеп, номерной агрегат):\nМарка, модель какая-то Категория ТС легковая\nТип транспортного средства по ПТС какой то Регистрационный знак такой то\nИдентификационный номер (VIN) БОДРЫЙ\nГод выпуска такой то Двигатель мощный Шасси хорошее\nКузов не битый не крашенный Цвет подливы\n2 Указанный автомобиль принадлежит Продавцу на основании паспорта транспортного средства\nсерии __________ \u2116__________, выданного ____ _____ _______ г. _______________________\n______________________________________________________ и свидетельства о регистрации\nсерии _________\u2116 _________, выданного ____ _____ _____г.____________________\n______________________________________________________________________________\n3 За проданный автомобиль (ТС) Продавец деньги в сумме _________________________________\n______________________________________________________ получил полностью.\n4 Продавец обязуется передать автомобиль (автомототранспортного средства, прицепа, номерного\nагрегата), указанный в настоящем договоре Покупателю. До заключения настоящего договора ТС никому\nне продано, не заложено, в споре и под арестом не состоит. Покупатель обязуется в течение 10 дней со дня\nподписания договора перерегистрировать автомобиль (автомототранспортное средство, прицеп, номерной\nагрегат) на себя. Настоящий договор составлен в трех экземплярах - по одному для каждой из сторон и для"),
+            });
+        }
     }
     private void CloseMethod()
     {
+        var wn = (((App)Application.Current!)?.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime)
+            ?.MainWindow;
         var window = (Application.Current?.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime)?.MainWindow;
         window?.Close();
+        wn?.Close();
     }
 }
